@@ -70,7 +70,7 @@
 								<input type="tel" class="form-control mb-4" placeholder="Telepon" name="telepon">
 
 								<!-- Sign up button -->
-								<a href="<?php echo site_url('SuccessController/index'); ?>" target="_blank">
+								<a href="<?php echo site_url('Success/index'); ?>" target="_blank">
 									<button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
 								</a>
 							</form>

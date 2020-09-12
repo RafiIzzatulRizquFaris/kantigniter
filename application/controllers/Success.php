@@ -1,5 +1,5 @@
 <?php
-class SuccessController extends CI_Controller {
+class Success extends CI_Controller {
 
 	public function index()
 	{
