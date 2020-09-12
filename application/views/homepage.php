@@ -18,30 +18,13 @@
     </script>
 </head>
 
-<body style="background-image: url('assets/banner.jpg');background-size: cover;">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFE5E5;">
-        <a class="navbar-brand" href="#"><a class="pengaduan" style="color: #FF0000;">PENGADUAN</a><a class="masyarakat"
-                style="color: #000000;">MASYARAKAT</a></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link mt-2 mr-1" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo site_url('LoginController/index'); ?>"><button type="button"
-                            class="btn btn-warning">Login</button></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container-fluid h-100"
-        style="text-align: center; display: inline-block; font-size: 30pt; font-weight: bold; margin-top: 100px;">
-        MELAKUKAN PENGADUAN<br>SEKARANG JADI LEBIH GAMPANG<br>
-        <button type="button" class="btn btn-lg btn-danger mt-5 font-weight-bold">Adukan Sekarang</button>
+<body style="background-image:url('assets/canteen-illustration.jpg'); background-size: cover; ">
+    <div class="container-fluid h-100 w-100"
+        style="text-align: center; display: inline-block; margin-top: 100px; color: #FFE5E5; padding: 70px 0;text-align: center; padding-top: 120px;">
+        <div style="font-size: 30pt; font-weight: bold;">Kantigniter</div>
+        <div style="font-size: 20pt;">Canteen Point of Sales Web Application</div>
+        <a href="<?php echo site_url('LoginController/index'); ?>" style="text-decoration: none;"><button type="button"
+                class="btn btn-lg btn-danger mt-3 font-weight-bold">Take me to Dashboard</button></a>
     </div>
 </body>
 
