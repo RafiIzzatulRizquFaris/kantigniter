@@ -14,7 +14,7 @@ class AdminController extends CI_Controller{
             $data['pengaduan'] = $this->ModelAction->get_pengaduan();
             $this->load->view('admin/admindashboard', $data);
         } else {
-            header("Location:".base_url().'LoginController/index');
+            header("Location:".base_url().'Login/index');
         }
     }
 }

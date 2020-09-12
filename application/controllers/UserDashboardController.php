@@ -13,7 +13,7 @@ class UserDashboardController extends CI_Controller{
             $data['report'] = $this->ModelAduan->getLaporan();
             $this->load->view('user/userdashboard', $data);
         } else {
-            header("Location:".base_url().'LoginController/index');
+            header("Location:".base_url().'Login/index');
         }
     }
 }

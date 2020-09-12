@@ -23,7 +23,7 @@
         style="text-align: center; display: inline-block; margin-top: 100px; color: #FFE5E5; padding: 70px 0;text-align: center; padding-top: 120px;">
         <div style="font-size: 30pt; font-weight: bold;">Kantigniter</div>
         <div style="font-size: 20pt;">Canteen Point of Sales Web Application</div>
-        <a href="<?php echo site_url('LoginController/index'); ?>" style="text-decoration: none;"><button type="button"
+        <a href="<?php echo site_url('Login/index'); ?>" style="text-decoration: none;"><button type="button"
                 class="btn btn-lg btn-danger mt-3 font-weight-bold">Take me to Dashboard</button></a>
     </div>
 </body>

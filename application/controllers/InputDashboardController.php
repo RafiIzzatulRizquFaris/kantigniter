@@ -5,7 +5,7 @@ class InputDashboardController extends CI_Controller{
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 'masyarakat') {
             $this->load->view('user/inputdashboard');
         } else {
-            header("Location:".base_url().'LoginController/index');
+            header("Location:".base_url().'Login/index');
         }
     }
 }

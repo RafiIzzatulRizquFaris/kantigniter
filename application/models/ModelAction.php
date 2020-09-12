@@ -22,7 +22,7 @@ class ModelAction extends CI_Model{
         );
 
         $this->db->insert('masyarakat', $data);
-        header("Location:".base_url().'LoginController/index');
+        header("Location:".base_url().'Login/index');
     }
 
     public function save_petugas()
