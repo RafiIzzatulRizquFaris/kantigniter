@@ -102,7 +102,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active">
-				<a class="nav-link" href="<?php echo site_url('AdminController/index');?>">
+				<a class="nav-link" href="<?php echo site_url('Admin/index');?>">
 					<i class="fas fa-fw fa-database"></i>
 					<span>Data Pengaduan</span></a>
 			</li>

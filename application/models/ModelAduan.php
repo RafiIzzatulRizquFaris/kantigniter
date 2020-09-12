@@ -16,7 +16,7 @@ class ModelAduan extends CI_Model{
         $where = array('id_pengaduan' => $this->input->post('report_id'),);
 
         $this->db->update('pengaduan', $data, $where);
-        header("Location:".base_url().'AdminController/index');
+        header("Location:".base_url().'Admin/index');
     }
 
     public function selesaiLaporanModel()
@@ -39,7 +39,7 @@ class ModelAduan extends CI_Model{
 
         $this->db->insert('tanggapan', $data);
         $this->db->update('pengaduan', $data_update, $where);
-        header("Location:".base_url().'AdminController/index');
+        header("Location:".base_url().'Admin/index');
     }
 
     public function insertLaporanModel()

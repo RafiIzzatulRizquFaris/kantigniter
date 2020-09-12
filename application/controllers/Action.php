@@ -55,7 +55,7 @@ class Action extends CI_Controller{
                 );
                 $this->session->set_userdata($data_session);
                 if ($this->session->userdata('status') == 'login') {
-                    header("Location:".base_url().'AdminController/index');
+                    header("Location:".base_url().'Admin/index');
                 } else {
                     header("Location:".base_url().'Welcome/index');
                 }
