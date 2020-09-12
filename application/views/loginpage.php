@@ -83,7 +83,7 @@
                   <!-- Register -->
                   <p>
                     Not a member?
-                    <a href="<?php echo site_url('RegisterController/index'); ?>">Register</a>
+                    <a href="<?php echo site_url('Register/index'); ?>">Register</a>
                   </p>
                 </form>
                 <!-- Default form login -->
