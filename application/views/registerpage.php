@@ -40,20 +40,7 @@
 								<p class="h4 mb-4">Sign up</p>
 
 								<!-- NIK -->
-								<input type="text" class="form-control mb-4" placeholder="NIK" name="nik">
-
-								<div class="form-row mb-4">
-									<div class="col">
-										<!-- First name -->
-										<input type="text" id="defaultRegisterFormFirstName" class="form-control"
-											placeholder="First name" name="first_name">
-									</div>
-									<div class="col">
-										<!-- Last name -->
-										<input type="text" id="defaultRegisterFormLastName" class="form-control"
-											placeholder="Last name" name="last_name">
-									</div>
-								</div>
+								<input type="text" class="form-control mb-4" placeholder="Full Name" name="nama_user">
 
 								<!-- Username -->
 								<input type="text" class="form-control mb-4" placeholder="username" name="username">
@@ -66,12 +53,23 @@
 									At least 8 characters and 1 digit
 								</small>
 
-								<!-- Telepon -->
-								<input type="tel" class="form-control mb-4" placeholder="Telepon" name="telepon">
+								<div class="input-group">
+									<div class="rs-select2 js-select-simple select--no-search">
+										<select name="position">
+											<option disabled="disabled" selected="selected">Choose
+												option</option>
+											<option value="1">Admin</option>
+											<option value="2">Waiter</option>
+											<option value="3">Kasir</option>
+											<option value="4">Owner</option>
+										</select>
+										<div class="select-dropdown"></div>
+									</div>
+								</div>
 
 								<!-- Sign up button -->
 								<a href="<?php echo site_url('Success/index'); ?>" target="_blank">
-									<button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+									<button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
 								</a>
 							</form>
 							<!-- Default form register -->

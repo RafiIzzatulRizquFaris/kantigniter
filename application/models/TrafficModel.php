@@ -6,13 +6,16 @@ class TrafficModel extends CI_Model{
         return $this->db->get_where('user',$account);
     }
 
-    public function logoutModel()
-    {
-        # code...
-    }
-
     public function registerModel()
     {
-        # code...
+        $data = array(
+            'username' => $this->input->post('username'),
+            'password' => md5($this->input->post('password')),
+            'nama_user' => $this->input->post('nama_user'),
+            'id_level' => $this->input->post('position'),
+            'status' => 'waiting',
+        );
+
+        $this->db->insert('user', $data);
     }
 }
