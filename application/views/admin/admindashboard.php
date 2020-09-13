@@ -88,9 +88,9 @@
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fa fa-envelope" aria-hidden="true"></i>
+					<i class="fa fa-cutlery" aria-hidden="true"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">ADUKAN</div>
+				<div class="sidebar-brand-text mx-3">Kantigniter</div>
 			</a>
 
 			<!-- Divider -->
@@ -147,34 +147,9 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<!-- Topbar -->
-				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<!-- Sidebar Toggle (Topbar) -->
-					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-						<i class="fa fa-bars"></i>
-					</button>
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow">
-							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span
-									class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $this->session->userdata('username') ?></span>
-								<img class="img-profile rounded-circle"
-									src="<?php echo base_url('assets/account_circle.png'); ?>">
-							</a>
-						</li>
-
-					</ul>
-
-				</nav>
-				<!-- End of Topbar -->
+			<?php
+             $this->load->view('partial/topbar');
+            ?>
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -245,7 +220,7 @@
 			<!-- End of Main Content -->
 
 			<?php
-             $this->load->view('footer');
+             $this->load->view('partial/footer');
             ?>
 
 		</div>
