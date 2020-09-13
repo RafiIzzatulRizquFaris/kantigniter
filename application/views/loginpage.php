@@ -55,7 +55,7 @@
               <div class="col-md-6 border-dark border-left">
                 <!-- <img src="loginill.png" alt="" width=500> -->
                 <!-- Default form login -->
-                <form class="text-center p-5" action="<?php echo site_url('Action/login') ?>" method="POST">
+                <form class="text-center p-5" action="<?php echo site_url('Login/login') ?>" method="POST">
                   <p class="h4 mb-4">Masuk</p>
 
                   <!-- Username -->
