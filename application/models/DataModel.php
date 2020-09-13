@@ -15,4 +15,9 @@ class DataModel extends CI_Model{
     {
         $this->db->update('customer', $data, $where);
     }
+
+    public function insertCustomer($data)
+    {
+        $this->db->insert('customer', $data);
+    }
 }
