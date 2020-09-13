@@ -16,23 +16,23 @@
 			</div>
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item <?php echo $this->uri->segment(1) == 'Admin' ? 'active': '' ?>">
+			<li class="nav-item <?php echo $this->uri->segment(2) == 'index' ? 'active': '' ?>">
 				<a class="nav-link" href="<?php echo site_url('Admin/index');?>">
 					<i class="fas fa-fw fa-database"></i>
-					<span>Data Pengaduan</span></a>
+					<span>Data Customer</span></a>
 			</li>
 
-			<li class="nav-item <?php echo $this->uri->segment(1) == 'OfficerDataController' ? 'active': '' ?>">
-				<a class="nav-link" href="<?php echo site_url('OfficerDataController/index');?>">
+			<li class="nav-item <?php echo $this->uri->segment(2) == 'datauser' ? 'active': '' ?>">
+				<a class="nav-link" href="<?php echo site_url('Admin/datauser');?>">
 					<i class="fas fa-fw fa-database"></i>
-					<span>Data Petugas</span></a>
+					<span>Data User</span></a>
 			</li>
 
 			<!-- Nav Item - Charts -->
-			<li class="nav-item <?php echo $this->uri->segment(1) == 'OfficerInputController' ? 'active': '' ?>">
-				<a class="nav-link" href="<?php echo site_url('OfficerInputController/index');?>">
-					<i class="fas fa-fw fa-envelope-open"></i>
-					<span>Input Petugas</span></a>
+			<li class="nav-item <?php echo $this->uri->segment(2) == 'dataproduct' ? 'active': '' ?>">
+				<a class="nav-link" href="<?php echo site_url('Admin/dataproduct');?>">
+					<i class="fas fa-fw fa-database"></i>
+					<span>Data Product</span></a>
 			</li>
 
 			<!-- Divider -->
