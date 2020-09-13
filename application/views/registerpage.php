@@ -34,7 +34,7 @@
 							<!-- <img src="loginill.png" alt="" width=500> -->
 							<!-- Default form register -->
 							<form class="text-center border border-light p-5"
-								action="<?php echo site_url('Action/register'); ?>" method="POST"
+								action="<?php echo site_url('Register/register'); ?>" method="POST"
 								enctype="multipart/form-data">
 
 								<p class="h4 mb-4">Sign up</p>
