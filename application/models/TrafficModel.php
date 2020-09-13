@@ -18,4 +18,10 @@ class TrafficModel extends CI_Model{
 
         $this->db->insert('user', $data);
     }
+
+    public function logoutModel()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
+    }
 }

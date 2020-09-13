@@ -58,5 +58,10 @@ class Login extends CI_Controller {
         } else {
             echo 'login gagal';
         }
-    }
+	}
+	
+	public function logout()
+	{
+		$this->TrafficModel->logoutModel();
+	}
 }
