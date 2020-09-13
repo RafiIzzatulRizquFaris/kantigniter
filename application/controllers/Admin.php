@@ -21,9 +21,8 @@ class Admin extends CI_Controller{
     public function dataproduct()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            // $data['pengaduan'] = $this->ModelAction->get_pengaduan();
-            // $this->load->view('admin/admindashboard', $data);
-            $this->load->view('admin/officerdatadashboard');
+            $data['product'] = $this->DataModel->readProduct;
+            $this->load->view('admin/productdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
         }
@@ -34,7 +33,7 @@ class Admin extends CI_Controller{
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
             // $data['pengaduan'] = $this->ModelAction->get_pengaduan();
             // $this->load->view('admin/admindashboard', $data);
-            $this->load->view('admin/officerinputdashboard');
+            $this->load->view('admin/userdashboard');
         } else {
             header("Location:".base_url().'Login/index');
         }
@@ -76,5 +75,39 @@ class Admin extends CI_Controller{
 
         $this->DataModel->insertCustomer($data);
         header("Location:".base_url().'Admin/index');
+    }
+
+    public function deleteProduct()
+    {
+        $data = array(
+            'id_product' => $this->input->post('product_id')
+        );
+        $this->DataModel->deleteProduct($data);
+        header("Location:".base_url().'Admin/dataproduct');
+    }
+
+    public function updateProduct()
+    {
+        $data = array(
+            'nama_product' => $this->input->post('name_product'),
+            'harga_product' => $this->input->post('price_product'),
+            'stok_product' => $this->input->post('stock_product'),
+        );
+
+        $where = array('id_product' => $this->input->post('id_product'),);
+        $this->DataModel->updateProduct($data, $where);
+        header("Location:".base_url().'Admin/dataproduct');
+    }
+
+    public function insertProduct()
+    {
+        $data = array(
+            'nama_product' => $this->input->post('name_product'),
+            'harga_product' => $this->input->post('price_product'),
+            'stok_product' => $this->input->post('stock_product'),
+        );
+
+        $this->DataModel->insertProduct($data);
+        header("Location:".base_url().'Admin/dataproduct');
     }
 }

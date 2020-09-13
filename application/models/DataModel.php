@@ -20,4 +20,25 @@ class DataModel extends CI_Model{
     {
         $this->db->insert('customer', $data);
     }
+
+    public function readProduct()
+    {
+        $data = $this->db->get('product');
+        return $data->result();
+    }
+
+    public function deleteProduct($data)
+    {
+        $this->db->delete('product', $data);
+    }
+
+    public function updateProduct($data, $where)
+    {
+        $this->db->update('product', $data, $where);
+    }
+
+    public function insertProduct($data)
+    {
+        $this->db->insert('product', $data);
+    }
 }
