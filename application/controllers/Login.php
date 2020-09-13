@@ -33,19 +33,23 @@ class Login extends CI_Controller {
 				// admin
 				$current_id = $this->TrafficModel->loginModel($account)->row(0)->id_user;
 				$current_state = $this->TrafficModel->loginModel($account)->row(0)->status;
-                $data_session = array(
-                    'id' => $current_id,
-                    'username' => $username,
-                    'role' => $current_role,
-					'status' => 'login',
-					'state' => $current_state
-                );
-                $this->session->set_userdata($data_session);
-                if ($this->session->userdata('status') == 'login' && $this->session->userdata('state') == "aktif") {
-                    header("Location:".base_url().'Admin/index');
-                } else {
-                    header("Location:".base_url().'Welcome/index');
-                }
+				if ($current_state == "aktif") {
+					$data_session = array(
+						'id' => $current_id,
+						'username' => $username,
+						'role' => $current_role,
+						'status' => 'login',
+						'state' => $current_state
+					);
+					$this->session->set_userdata($data_session);
+					if ($this->session->userdata('status') == 'login') {
+						header("Location:".base_url().'Admin/index');
+					} else {
+						header("Location:".base_url().'Welcome/index');
+					}
+				}else {
+					header("Location:".base_url().'Welcome/index');
+				}
             } else if ($role == '2') {
 				// waiter
 			} else if ($role == '3') {
