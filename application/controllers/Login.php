@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 
         $account = array(
             'username' => $username,
-            'password' => $password
+            'password' => md5($password)
         );
 
         $check = $this->TrafficModel->loginModel($account)->num_rows();
@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 					$data_session = array(
 						'id' => $current_id,
 						'username' => $username,
-						'role' => $current_role,
+						'role' => $role,
 						'status' => 'login',
 						'state' => $current_state
 					);
