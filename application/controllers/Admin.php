@@ -21,7 +21,7 @@ class Admin extends CI_Controller{
     public function dataproduct()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            $data['product'] = $this->DataModel->readProduct;
+            $data['product'] = $this->DataModel->readProduct();
             $this->load->view('admin/productdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
@@ -31,9 +31,8 @@ class Admin extends CI_Controller{
     public function datauser()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            // $data['pengaduan'] = $this->ModelAction->get_pengaduan();
-            // $this->load->view('admin/admindashboard', $data);
-            $this->load->view('admin/userdashboard');
+            $data['user'] = $this->DataModel->readUser();
+            $this->load->view('admin/userdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
         }
@@ -53,7 +52,7 @@ class Admin extends CI_Controller{
         $data = array(
             'nama_customer' => $this->input->post('name_customer'),
             'username' => $this->input->post('username_customer'),
-            'password' => $this->input->post('password_customer'),
+            'password' => md5($this->input->post('password_customer')),
             'saldo' => $this->input->post('balance_customer'),
             'status' => $this->input->post('status_customer'),
         );
@@ -68,7 +67,7 @@ class Admin extends CI_Controller{
         $data = array(
             'nama_customer' => $this->input->post('name_customer'),
             'username' => $this->input->post('username_customer'),
-            'password' => $this->input->post('password_customer'),
+            'password' => md5($this->input->post('password_customer')),
             'saldo' => $this->input->post('balance_customer'),
             'status' => $this->input->post('status_customer'),
         );
@@ -109,5 +108,43 @@ class Admin extends CI_Controller{
 
         $this->DataModel->insertProduct($data);
         header("Location:".base_url().'Admin/dataproduct');
+    }
+
+    public function deleteUser()
+    {
+        $data = array(
+            'id_user' => $this->input->post('user_id')
+        );
+        $this->DataModel->deleteUser($data);
+        header("Location:".base_url().'Admin/datauser');
+    }
+    
+    public function updateUser()
+    {
+        $data = array(
+            'nama_user' => $this->input->post('name_user'),
+            'username' => $this->input->post('username_user'),
+            'password' => md5($this->input->post('password_user')),
+            'id_level' => $this->input->post('level_user'),
+            'status' => $this->input->post('status_user'),
+        );
+
+        $where = array('id_user' => $this->input->post('id_user'),);
+        $this->DataModel->updateUser($data, $where);
+        header("Location:".base_url().'Admin/datauser');
+    }
+
+    public function insertUser()
+    {
+        $data = array(
+            'nama_user' => $this->input->post('name_user'),
+            'username' => $this->input->post('username_user'),
+            'password' => md5($this->input->post('password_user')),
+            'id_level' => $this->input->post('level_user'),
+            'status' => $this->input->post('status_user'),
+        );
+
+        $this->DataModel->insertUser($data);
+        header("Location:".base_url().'Admin/datauser');
     }
 }
