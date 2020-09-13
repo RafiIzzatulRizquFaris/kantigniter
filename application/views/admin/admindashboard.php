@@ -32,36 +32,75 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<script src="<?php echo base_url('js/sb-admin-2.min.js');?>"></script>
+	<script src="<?php echo base_url('js/scripts.js');?>"></script>
 	<script>
-		function print() {
-			console.log("dasdasd");
+		function ondelete(id, cutomername) {
+			$("#delete-data").html("")
+			let layout =
+				`<form action="<?php echo site_url('Admin/deleteCustomer');?>" method="POST" >Menghapus <input type="text" name="customer_name" readonly value="${customername}"> dengan id <input type="text" name="customer_id" readonly value="${id}"><button type="submit" class="btn btn--radius-2 btn-danger btn-block mt-3">Delete</button></form>`
+			$("#delete-data").append(layout)
 		}
 
-		function onProsesLaporan(id, judul, tgl, isi, foto) {
-			$("#proses-report").html("")
-			let layout =
-				`<form action="<?php echo site_url('AduanController/prosesLaporan');?>" method="POST" >Preses laporan : <input type="text" name="report_title" readonly value="${judul}"><br><br> Dengan id : <input type="text" name="report_id" readonly value="${id}"><br><br>Isi laporan :</br>${isi}<br><br>Bukti : <br><img src="<?php echo base_url('assets/');?>${foto}" width="300"><button type="submit" class="btn btn--radius-2 btn-primary btn-block mt-3">Proses</button></form>`
-			$("#proses-report").append(layout)
-		}
-
-		function onSelesaiLaporan(id, judul, tgl, isi) {
-			$("#selesai-report").html("")
-			let layout =
-				`<form method="POST" action="<?php echo site_url('AduanController/selesaiLaporan') ?>">
+		function onupdate(id, username, name, balance) {
+			$("#update-data").html("");
+			let layoutupdate = `<div class="card card-7">
+						<div class="card-body">
+							<form method="POST" action="<?php echo site_url('Admin/updateCustomer'); ?>">
 								<div class="form-row">
 									<div class="name">ID</div>
 									<div class="value">
 										<div class="input-group">
-											<input class="input--style-5" type="text" name="report_id" readonly value="${id}"/>
+											<input class="input--style-5" type="text" name="id_customer" readonly value="${id}"/>
 										</div>
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="name">Tanggapan</div>
+									<div class="name">Nama</div>
 									<div class="value">
 										<div class="input-group">
-											<textarea class="form-control input--style-5 input-group-text" name="report_resp"
-												rows="3"></textarea>
+											<input class="input--style-5" type="text" name="name_customer" value="${name}"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Username</div>
+									<div class="value">
+										<div class="input-group">
+											<input class="input--style-5" type="text" name="username_customer" value="${username}"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Password</div>
+									<div class="value">
+										<div class="input-group">
+											<input class="input--style-5" type="password"
+												name="password_customer" />
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Saldo</div>
+									<div class="value">
+										<div class="input-group">
+											<input type="text" class="input--style-5" name="balance_customer" value="${balance}">
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Status</div>
+									<div class="value">
+										<div class="input-group">
+											<div class="rs-select2 js-select-simple select--no-search">
+												<select name="status_customer">
+													<option disabled="disabled" selected="selected">Choose
+														option</option>
+													<option value="aktif">Aktif</option>
+													<option value="suspen">Suspen</option>
+													<option value="waiting">Menunggu</option>
+												</select>
+												<div class="select-dropdown"></div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -70,8 +109,76 @@
 										Submit
 									</button>
 								</div>
-							</form>`
-			$("#selesai-report").append(layout)
+							</form>
+						</div>
+					</div>`
+			$("#update-data").append(layoutupdate)
+		}
+
+		function oninsert() {
+			$("#insert-data").html("");
+			let layoutupdate = `<div class="card card-7">
+						<div class="card-body">
+							<form method="POST" action="<?php echo site_url('Admin/insertCustomer'); ?>">
+								<div class="form-row">
+									<div class="name">Nama</div>
+									<div class="value">
+										<div class="input-group">
+											<input class="input--style-5" type="text" name="name_customer"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Username</div>
+									<div class="value">
+										<div class="input-group">
+											<input class="input--style-5" type="text" name="username_customer"/>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Password</div>
+									<div class="value">
+										<div class="input-group">
+											<input class="input--style-5" type="password"
+												name="password_customer" />
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Saldo</div>
+									<div class="value">
+										<div class="input-group">
+											<input type="text" class="input--style-5" name="balance_customer">
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Status</div>
+									<div class="value">
+										<div class="input-group">
+											<div class="rs-select2 js-select-simple select--no-search">
+												<select name="status_customer">
+													<option disabled="disabled" selected="selected">Choose
+														option</option>
+													<option value="aktif">Aktif</option>
+													<option value="suspen">Suspen</option>
+													<option value="waiting">Menunggu</option>
+												</select>
+												<div class="select-dropdown"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-center">
+									<button class="btn btn--radius-2 btn-success btn-block btn-lg" type="submit">
+										Submit
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>`
+			$("#insert-data").append(layoutupdate)
 		}
 
 	</script>
@@ -102,22 +209,17 @@
 				<div class="container-fluid">
 
 					<div class="container my-3 text-right">
-						<button type="button" class="btn btn-primary"><a href="<?= site_url('Action/print_pdf_aduan') ?>"
-								style="text-decoration: none; color: white;">Cetak
-								PDF</a></button>
-						<button type="button" class="btn btn-primary"><a href="<?= site_url('Action/print_xls_aduan') ?>"
-								style="text-decoration: none; color: white;">Cetak
-								XLS</a></button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal" onclick="oninsert()">Tambah Customer</button>
 					</div>
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Data Pengaduan</h1>
-					<p class="mb-4">Mencakup segala data pengaduan yang telah dimasukkan oleh masyarakat</p>
+					<!-- <h1 class="h3 mb-2 text-gray-800">Data Customer</h1> -->
+					<!-- <p class="mb-4">Mencakup segala data pengaduan yang telah dimasukkan oleh masyarakat</p> -->
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary text-center">Data Pengaduan</h6>
+							<h6 class="m-0 font-weight-bold text-primary text-center">Data Customer</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -125,31 +227,31 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Judul Pengaduan</th>
-											<th>Tanggal</th>
+											<th>Username</th>
+											<th>Fullname</th>
+											<th>Balance</th>
 											<th>Status</th>
 											<th class="text-center">Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-									foreach ($pengaduan as $data) {
+									foreach ($customer as $data) {
 									?>
 										<tr>
-											<td><?= $data->id_pengaduan?></td>
-											<td><?= $data->judul?></td>
-											<td><?= $data->tgl_pengaduan?></td>
+											<td><?= $data->id_customer?></td>
+											<td><?= $data->username?></td>
+											<td><?= $data->nama_customer?></td>
+											<td><?= $data->saldo?></td>
 											<td><?= $data->status?></td>
-											<?php
-											$strconcat = "'";
-											if ($data->status == 'menunggu') {
-												echo '<td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prosesModal" onclick="onProsesLaporan('.$strconcat.''.$data->id_pengaduan.''.$strconcat.', '.$strconcat.''.$data->judul.''.$strconcat.', '.$strconcat.''.$data->tgl_pengaduan.''.$strconcat.', '.$strconcat.''.$data->isi_laporan.''.$strconcat.', '.$strconcat.''.$data->foto.''.$strconcat.')">Proses</button></td>';
-											}elseif ($data->status == 'proses') {
-												echo '<td class="text-center"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#selesaiModal" onclick="onSelesaiLaporan('.$strconcat.''.$data->id_pengaduan.''.$strconcat.', '.$strconcat.''.$data->judul.''.$strconcat.', '.$strconcat.''.$data->tgl_pengaduan.''.$strconcat.', '.$strconcat.''.$data->isi_laporan.''.$strconcat.')">Selesai</button></td>';
-											}elseif ($data->status == 'selesai') {
-												echo '<td class="text-center"><button type="button" class="btn btn-secondary" disabled>No Action</button></td>';
-											}
-											?>
+											<td>
+												<button type="button" class="btn btn-warning" data-toggle="modal"
+													data-target="#editModal"
+													onclick="onupdate('<?php echo $data->id_customer?>', '<?php echo $data->username?>', '<?php echo $data->nama_customer?>', '<?php echo $data->saldo?>')">Edit</button>
+												<button type="button" class="btn btn-danger" data-toggle="modal"
+													data-target="#deleteModal"
+													onclick="ondelete('<?php echo $data->id_customer?>', '<?php echo $data->nama_customer?>')">Delete</button>
+											</td>
 										</tr>
 										<?php
 									}
@@ -181,43 +283,9 @@
 		<i class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Modal Proses-->
-	<div class="modal fade" id="prosesModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Proses Laporan</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" id="proses-report">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Modal Selesai-->
-	<div class="modal fade" id="selesaiModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="card card-7">
-						<div class="card-body" id="selesai-report">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php
+        $this->load->view('partial/cudmodal');
+    ?>
 
 	<?php
         $this->load->view('partial/logoutmodal');
