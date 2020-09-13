@@ -40,10 +40,9 @@ class Admin extends CI_Controller{
 
     public function deleteCustomer()
     {
-        $data = array(
-            'id_customer' => $this->input->post('customer_id')
-        );
-        $this->DataModel->deleteCustomer($data);
+        $data = array('status' => 'suspen');
+        $where = array('id_customer' => $this->input->post('customer_id'));
+        $this->DataModel->updateCustomer($data, $where);
         header("Location:".base_url().'Admin/index');
     }
     
@@ -112,10 +111,9 @@ class Admin extends CI_Controller{
 
     public function deleteUser()
     {
-        $data = array(
-            'id_user' => $this->input->post('user_id')
-        );
-        $this->DataModel->deleteUser($data);
+        $data = array('status' => 'suspen');
+        $where = array('id_user' => $this->input->post('user_id'));
+        $this->DataModel->updateUser($data, $where);
         header("Location:".base_url().'Admin/datauser');
     }
     
