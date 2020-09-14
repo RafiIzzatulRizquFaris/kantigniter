@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 'admin') {
+		if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1') {
             header("Location:".base_url().'Admin/index');
 		}else{
 			$this->load->view('loginpage');
@@ -52,6 +52,25 @@ class Login extends CI_Controller {
 				}
             } else if ($role == '2') {
 				// waiter
+				$current_id = $this->TrafficModel->loginModel($account)->row(0)->id_user;
+				$current_state = $this->TrafficModel->loginModel($account)->row(0)->status;
+				if ($current_state == "aktif") {
+					$data_session = array(
+						'id' => $current_id,
+						'username' => $username,
+						'role' => $role,
+						'status' => 'login',
+						'state' => $current_state
+					);
+					$this->session->set_userdata($data_session);
+					if ($this->session->userdata('status') == 'login') {
+						header("Location:".base_url().'Waiter/index');
+					} else {
+						header("Location:".base_url().'Welcome/index');
+					}
+				}else {
+					header("Location:".base_url().'Welcome/index');
+				}
 			} else if ($role == '3') {
 				// kasir
 			} else if ($role == '4') {
@@ -67,5 +86,6 @@ class Login extends CI_Controller {
 	public function logout()
 	{
 		$this->TrafficModel->logoutModel();
+        redirect(base_url());
 	}
 }

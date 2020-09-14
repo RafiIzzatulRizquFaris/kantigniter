@@ -22,6 +22,5 @@ class TrafficModel extends CI_Model{
     public function logoutModel()
     {
         $this->session->sess_destroy();
-        redirect(base_url());
     }
 }
