@@ -54,10 +54,28 @@ class Waiter extends CI_Controller{
     public function updateProduct()
     {
         $table = 'product';
+        $foto = $_FILES['image_product']['tmp_name'];
+        if ($foto = '') {
+            // kosong
+        } else {
+            $config['upload_path'] = FCPATH .'./assets/product';
+            $config['allowed_types'] = 'jpeg|jpg|png|gif';
+            $config['max_size']  = '2048';
+
+            $this->upload->initialize($config);
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('image_product')) {
+                echo "gagal upload"; 
+                die();
+            } else {
+                $foto = $this->upload->data('file_name');
+            }
+        }
         $data = array(
             'nama_product' => $this->input->post('name_product'),
             'harga_product' => $this->input->post('price_product'),
             'stok_product' => $this->input->post('stock_product'),
+            'gambar_product' => $foto,
         );
 
         $where = array('id_product' => $this->input->post('id_product'),);
@@ -68,10 +86,28 @@ class Waiter extends CI_Controller{
     public function insertProduct()
     {
         $table = 'product';
+        $foto = $_FILES['image_product']['tmp_name'];
+        if ($foto = '') {
+            // kosong
+        } else {
+            $config['upload_path'] = FCPATH .'./assets/product';
+            $config['allowed_types'] = 'jpeg|jpg|png|gif';
+            $config['max_size']  = '2048';
+
+            $this->upload->initialize($config);
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('image_product')) {
+                echo "gagal upload"; 
+                die();
+            } else {
+                $foto = $this->upload->data('file_name');
+            }
+        }
         $data = array(
             'nama_product' => $this->input->post('name_product'),
             'harga_product' => $this->input->post('price_product'),
             'stok_product' => $this->input->post('stock_product'),
+            'gambar_product' => $foto,
         );
 
         $this->DataModel->insertTable($table, $data);

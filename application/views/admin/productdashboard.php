@@ -45,7 +45,7 @@
 			$("#update-data").html("");
 			let layoutupdate = `<div class="card card-7">
 						<div class="card-body">
-							<form method="POST" action="<?php echo site_url('Admin/updateProduct'); ?>">
+							<form method="POST" action="<?php echo site_url('Admin/updateProduct'); ?>" enctype="multipart/form-data">
 								<div class="form-row">
 									<div class="name">ID</div>
 									<div class="value">
@@ -78,6 +78,14 @@
 										</div>
 									</div>
 								</div>
+								<div class="form-row">
+									<div class="name">Image</div>
+									<div class="value">
+										<div class="input-group">
+											<input type="file" class="form-control-file input--style-5" id="image_product" name="image_product">
+										</div>
+									</div>
+								</div>
 								<div class="text-center">
 									<button class="btn btn--radius-2 btn-success btn-block btn-lg" type="submit">
 										Submit
@@ -93,7 +101,7 @@
 			$("#insert-data").html("");
 			let layoutupdate = `<div class="card card-7">
 						<div class="card-body">
-							<form method="POST" action="<?php echo site_url('Admin/insertProduct'); ?>">
+							<form method="POST" action="<?php echo site_url('Admin/insertProduct'); ?>" enctype="multipart/form-data">
 								<div class="form-row">
 									<div class="name">Nama Product</div>
 									<div class="value">
@@ -115,6 +123,14 @@
 									<div class="value">
 										<div class="input-group">
 											<input type="text" class="input--style-5" name="stock_product">
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="name">Image</div>
+									<div class="value">
+										<div class="input-group">
+											<input type="file" class="form-control-file input--style-5" id="image_product" name="image_product">
 										</div>
 									</div>
 								</div>
@@ -175,6 +191,7 @@
 									<thead>
 										<tr>
 											<th>ID</th>
+											<th>Image</th>
 											<th>Product Name</th>
 											<th>Price</th>
 											<th>Stock</th>
@@ -187,6 +204,7 @@
 									?>
 										<tr>
 											<td><?= $data->id_product?></td>
+											<td class="text-center"><img src="<?php echo base_url('assets/product/').$data->gambar_product;?>" width="100"></td>
 											<td><?= $data->nama_product?></td>
 											<td><?= $data->harga_product?></td>
 											<td><?= $data->stok_product?></td>

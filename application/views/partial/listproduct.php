@@ -9,6 +9,7 @@
 												cellspacing="0">
 												<thead>
 													<tr>
+														<th>Image</th>
 														<th>Product Name</th>
 														<th>Price</th>
 														<th>Stock</th>
@@ -20,6 +21,7 @@
 									foreach ($product as $data) {
 									?>
 													<tr>
+														<td><img src="<?php echo base_url('assets/product/').$data->gambar_product;?>" width="100"></td>
 														<td><?= $data->nama_product?></td>
 														<td><?= $data->harga_product?></td>
 														<td><?= $data->stok_product?></td>
