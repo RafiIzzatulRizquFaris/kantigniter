@@ -10,7 +10,9 @@ class Waiter extends CI_Controller{
     public function index()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '2' && $this->session->userdata('state') == 'aktif')  {
-            $this->load->view('waiter/waiterdashboard');
+            $table = 'product';
+            $data['product'] = $this->DataModel->readTable($table);
+            $this->load->view('waiter/waiterdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
         }
