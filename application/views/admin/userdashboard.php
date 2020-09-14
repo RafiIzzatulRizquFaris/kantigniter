@@ -130,14 +130,6 @@
 			let layoutupdate = `<div class="card card-7">
 						<div class="card-body">
 							<form method="POST" action="<?php echo site_url('Admin/insertUser'); ?>">
-                            <div class="form-row">
-									<div class="name">ID</div>
-									<div class="value">
-										<div class="input-group">
-											<input class="input--style-5" type="text" name="id_user"/>
-										</div>
-									</div>
-								</div>
 								<div class="form-row">
 									<div class="name">Nama</div>
 									<div class="value">
