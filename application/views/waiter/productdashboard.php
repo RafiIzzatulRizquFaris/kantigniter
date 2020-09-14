@@ -128,7 +128,6 @@
 					</div>`
 			$("#insert-data").append(layoutupdate)
 		}
-
 	</script>
 </head>
 
@@ -149,7 +148,7 @@
 			<!-- Main Content -->
 			<div id="content">
 
-			<?php
+				<?php
              $this->load->view('partial/topbar');
             ?>
 
@@ -157,7 +156,8 @@
 				<div class="container-fluid">
 
 					<div class="container my-3 text-right">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal" onclick="oninsert()">Tambah Produk</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal"
+							onclick="oninsert()">Tambah Produk</button>
 					</div>
 
 					<!-- Page Heading -->
