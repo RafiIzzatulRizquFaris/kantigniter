@@ -1,65 +1,29 @@
 <?php
 class DataModel extends CI_Model{
-    public function readCustomer()
+    public function readTable($table)
     {
-        $data = $this->db->get('customer');
+        $data = $this->db->get($table);
         return $data->result();
     }
 
-    public function deleteCustomer($data)
+    public function readWhereTable($table, $where)
     {
-        $this->db->delete('customer', $data);
-    }
-
-    public function updateCustomer($data, $where)
-    {
-        $this->db->update('customer', $data, $where);
-    }
-
-    public function insertCustomer($data)
-    {
-        $this->db->insert('customer', $data);
-    }
-
-    public function readProduct()
-    {
-        $data = $this->db->get('product');
+        $data = $this->db->get_where($table, $where);
         return $data->result();
     }
 
-    public function deleteProduct($data)
+    public function deleteTable($table, $data)
     {
-        $this->db->delete('product', $data);
+        $this->db->delete($table, $data);
     }
 
-    public function updateProduct($data, $where)
+    public function updateTable($table, $data, $where)
     {
-        $this->db->update('product', $data, $where);
+        $this->db->update($table, $data, $where);
     }
 
-    public function insertProduct($data)
+    public function insertTable($table, $data)
     {
-        $this->db->insert('product', $data);
-    }
-
-    public function readUser()
-    {
-        $data = $this->db->get('user');
-        return $data->result();
-    }
-
-    public function deleteUser($data)
-    {
-        $this->db->delete('user', $data);
-    }
-
-    public function updateUser($data, $where)
-    {
-        $this->db->update('user', $data, $where);
-    }
-
-    public function insertUser($data)
-    {
-        $this->db->insert('user', $data);
+        $this->db->insert($table, $data);
     }
 }
