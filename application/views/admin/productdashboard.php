@@ -189,11 +189,11 @@
 											<td><?= $data->id_product?></td>
 											<td><?= $data->nama_product?></td>
 											<td><?= $data->harga_product?></td>
-											<td><?= $data->stock_product?></td>
+											<td><?= $data->stok_product?></td>
 											<td>
 												<button type="button" class="btn btn-warning" data-toggle="modal"
 													data-target="#editModal"
-													onclick="onupdate('<?php echo $data->id_product?>', '<?php echo $data->nama_product?>', '<?php echo $data->harga_product?>', '<?php echo $data->stock_product?>')">Edit</button>
+													onclick="onupdate('<?php echo $data->id_product?>', '<?php echo $data->nama_product?>', '<?php echo $data->harga_product?>', '<?php echo $data->stok_product?>')">Edit</button>
 												<button type="button" class="btn btn-danger" data-toggle="modal"
 													data-target="#deleteModal"
 													onclick="ondelete('<?php echo $data->id_product?>', '<?php echo $data->nama_product?>')">Delete</button>
