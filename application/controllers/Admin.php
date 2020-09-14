@@ -11,7 +11,8 @@ class Admin extends CI_Controller{
     public function index()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            $data['customer'] = $this->DataModel->readCustomer();
+            $table = 'customer';
+            $data['customer'] = $this->DataModel->readTable($table);
             $this->load->view('admin/admindashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
@@ -21,7 +22,8 @@ class Admin extends CI_Controller{
     public function dataproduct()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            $data['product'] = $this->DataModel->readProduct();
+            $table = 'product';
+            $data['product'] = $this->DataModel->readTable($table);
             $this->load->view('admin/productdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
@@ -31,7 +33,8 @@ class Admin extends CI_Controller{
     public function datauser()
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '1' && $this->session->userdata('state') == 'aktif')  {
-            $data['user'] = $this->DataModel->readUser();
+            $table = 'user';
+            $data['user'] = $this->DataModel->readTable($table);
             $this->load->view('admin/userdashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');
@@ -40,14 +43,16 @@ class Admin extends CI_Controller{
 
     public function deleteCustomer()
     {
+        $table = 'customer';
         $data = array('status' => 'suspen');
         $where = array('id_customer' => $this->input->post('customer_id'));
-        $this->DataModel->updateCustomer($data, $where);
+        $this->DataModel->updateTable($table, $data, $where);
         header("Location:".base_url().'Admin/index');
     }
     
     public function updateCustomer()
     {
+        $table = 'customer';
         $data = array(
             'nama_customer' => $this->input->post('name_customer'),
             'username' => $this->input->post('username_customer'),
@@ -57,12 +62,13 @@ class Admin extends CI_Controller{
         );
 
         $where = array('id_customer' => $this->input->post('id_customer'),);
-        $this->DataModel->updateCustomer($data, $where);
+        $this->DataModel->updateTable($table, $data, $where);
         header("Location:".base_url().'Admin/index');
     }
 
     public function insertCustomer()
     {
+        $table = 'customer';
         $data = array(
             'nama_customer' => $this->input->post('name_customer'),
             'username' => $this->input->post('username_customer'),
@@ -71,21 +77,23 @@ class Admin extends CI_Controller{
             'status' => $this->input->post('status_customer'),
         );
 
-        $this->DataModel->insertCustomer($data);
+        $this->DataModel->insertTable($table, $data);
         header("Location:".base_url().'Admin/index');
     }
 
     public function deleteProduct()
     {
+        $table = 'product';
         $data = array(
             'id_product' => $this->input->post('product_id')
         );
-        $this->DataModel->deleteProduct($data);
+        $this->DataModel->deleteTable($table, $data);
         header("Location:".base_url().'Admin/dataproduct');
     }
 
     public function updateProduct()
     {
+        $table = 'product';
         $data = array(
             'nama_product' => $this->input->post('name_product'),
             'harga_product' => $this->input->post('price_product'),
@@ -93,32 +101,35 @@ class Admin extends CI_Controller{
         );
 
         $where = array('id_product' => $this->input->post('id_product'),);
-        $this->DataModel->updateProduct($data, $where);
+        $this->DataModel->updateTable($table, $data, $where);
         header("Location:".base_url().'Admin/dataproduct');
     }
 
     public function insertProduct()
     {
+        $table = 'product';
         $data = array(
             'nama_product' => $this->input->post('name_product'),
             'harga_product' => $this->input->post('price_product'),
             'stok_product' => $this->input->post('stock_product'),
         );
 
-        $this->DataModel->insertProduct($data);
+        $this->DataModel->insertTable($table, $data);
         header("Location:".base_url().'Admin/dataproduct');
     }
 
     public function deleteUser()
     {
+        $table = 'user';
         $data = array('status' => 'suspen');
         $where = array('id_user' => $this->input->post('user_id'));
-        $this->DataModel->updateUser($data, $where);
+        $this->DataModel->updateTable($table, $data, $where);
         header("Location:".base_url().'Admin/datauser');
     }
     
     public function updateUser()
     {
+        $table = 'user';
         $data = array(
             'nama_user' => $this->input->post('name_user'),
             'username' => $this->input->post('username_user'),
@@ -128,12 +139,13 @@ class Admin extends CI_Controller{
         );
 
         $where = array('id_user' => $this->input->post('id_user'),);
-        $this->DataModel->updateUser($data, $where);
+        $this->DataModel->updateTable($table, $data, $where);
         header("Location:".base_url().'Admin/datauser');
     }
 
     public function insertUser()
     {
+        $table = 'user';
         $data = array(
             'nama_user' => $this->input->post('name_user'),
             'username' => $this->input->post('username_user'),
@@ -142,7 +154,7 @@ class Admin extends CI_Controller{
             'status' => $this->input->post('status_user'),
         );
 
-        $this->DataModel->insertUser($data);
+        $this->DataModel->insertTable($table, $data);
         header("Location:".base_url().'Admin/datauser');
     }
 }
