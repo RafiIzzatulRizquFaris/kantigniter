@@ -122,29 +122,31 @@ class Waiter extends CI_Controller{
 
         $wherecustomer = array(
             'username' => $this->input->post('username_customer'), 
-            'password' => $this->input->post('password_customer'),
+            'password' => md5($this->input->post('password_customer')),
         );
 
-        $idcustomer = $this->DataModel->readWhereTable($tablecustomer, $wherecustomer)->row(0)->id_user;
-        $balancecustomer = $this->DataModel->readWhereTable($tablecustomer, $wherecustomer)->row(0)->saldo;
+        $idcustomer = $this->DataModel->readColumnTable($tablecustomer, $wherecustomer)->id_customer;
+        $balancecustomer = $this->DataModel->readColumnTable($tablecustomer, $wherecustomer)->saldo;
 
         $dataorder = array(
             'id_waiter' => $this->session->userdata('id'),
             'id_customer' => $idcustomer,
             'keterangan' => 'tidak ada keterangan',
-            'status' => 'proses',
+            'status_order' => 'menunggu',
         );
 
         $this->db->set('tanggal','NOW()',FALSE);
 
-        $this->DataModel->insertTable($table, $dataorder);
+        $this->DataModel->insertTable($tableorder, $dataorder);
 
         $whereorder = array(
             'id_customer' => $idcustomer, 
-            'status' => 'proses',
+            'status_order' => 'menunggu',
         );
 
-        $idorder = $this->DataModel->readWhereTable($tableorder, $whereorder);
+        $idorder = $this->DataModel->readColumnTable($tableorder, $whereorder)->id_order;
+
+        echo $idorder;
 
         $idproduct = $_POST['product_id'];
         $totalprice = $_POST['total_price'];
@@ -156,7 +158,7 @@ class Waiter extends CI_Controller{
             ));
         }
 
-        $this->DataModel->insertTable($tabledetailorder, $datadetailorder);
+        $this->DataModel->insertBatchTable($tabledetailorder, $datadetailorder);
 
         $nowbalance = number_format($balancecustomer) - number_format($totalprice);
         
