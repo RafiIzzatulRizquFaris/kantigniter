@@ -27,8 +27,7 @@
 														<td><?= $data->stok_product?></td>
 														<td class="text-center">
 															<button type="button" class="btn btn-success"
-																data-toggle="modal" data-target="#editModal"
-																onclick="onupdate('<?php echo $data->id_product?>', '<?php echo $data->nama_product?>', '<?php echo $data->harga_product?>', '<?php echo $data->stok_product?>')">Buy</button>
+																onclick="buyproduct('<?php echo $data->id_product?>', '<?php echo $data->nama_product?>', '<?php echo $data->harga_product?>', '<?php echo $data->gambar_product?>')">Buy</button>
 														</td>
 													</tr>
 													<?php

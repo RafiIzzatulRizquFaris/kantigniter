@@ -215,6 +215,10 @@
 	<?php
         $this->load->view('partial/initdatatables');
 	?>
+
+	<?php
+		$this->load->view('partial/orderscript');
+	?>
 </body>
 
 </html>

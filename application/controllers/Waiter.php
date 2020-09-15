@@ -113,4 +113,57 @@ class Waiter extends CI_Controller{
         $this->DataModel->insertTable($table, $data);
         header("Location:".base_url().'Waiter/dataproduct');
     }
+
+    public function inputOrder()
+    {
+        $tablecustomer = 'customer';
+        $tableorder = 'order';
+        $tabledetailorder = 'detail_order';
+
+        $wherecustomer = array(
+            'username' => $this->input->post('username_customer'), 
+            'password' => $this->input->post('password_customer'),
+        );
+
+        $idcustomer = $this->DataModel->readWhereTable($tablecustomer, $wherecustomer)->row(0)->id_user;
+        $balancecustomer = $this->DataModel->readWhereTable($tablecustomer, $wherecustomer)->row(0)->saldo;
+
+        $dataorder = array(
+            'id_waiter' => $this->session->userdata('id'),
+            'id_customer' => $idcustomer,
+            'keterangan' => 'tidak ada keterangan',
+            'status' => 'proses',
+        );
+
+        $this->db->set('tanggal','NOW()',FALSE);
+
+        $this->DataModel->insertTable($table, $dataorder);
+
+        $whereorder = array(
+            'id_customer' => $idcustomer, 
+            'status' => 'proses',
+        );
+
+        $idorder = $this->DataModel->readWhereTable($tableorder, $whereorder);
+
+        $idproduct = $_POST['product_id'];
+        $totalprice = $_POST['total_price'];
+        $datadetailorder = array();
+        foreach ($idproduct as $productid) {
+            array_push($datadetailorder, array(
+                'id_order' => $idorder,
+                'id_product' => $productid,
+            ));
+        }
+
+        $this->DataModel->insertTable($tabledetailorder, $datadetailorder);
+
+        $nowbalance = number_format($balancecustomer) - number_format($totalprice);
+        
+        $whereupdatebalance = array('id_customer' => $idcustomer,);
+        $dataupdatebalance = array('saldo' => $nowbalance,);
+        $this->DataModel->updateTable($tablecustomer, $dataupdatebalance, $wherecustomer);
+
+        header("Location:".base_url().'Waiter/index');
+    }
 }
