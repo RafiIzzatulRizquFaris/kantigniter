@@ -172,9 +172,9 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<div class="container my-3 text-right">
+					<!-- <div class="container my-3 text-right">
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal" onclick="oninsert()">Tambah Produk</button>
-					</div>
+					</div> -->
 
 					<!-- Page Heading -->
 					<!-- <h1 class="h3 mb-2 text-gray-800">Data Customer</h1> -->
