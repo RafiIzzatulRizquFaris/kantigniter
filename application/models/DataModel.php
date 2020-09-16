@@ -29,7 +29,7 @@ class DataModel extends CI_Model{
 
     public function insertBatchTable($table, $data)
     {
-        $this->db->insert_batch($data);
+        $this->db->insert_batch($table, $data);
     }
 
     public function readColumnTable($table, $where)

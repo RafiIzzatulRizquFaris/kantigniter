@@ -1,8 +1,8 @@
 <div class="card shadow mb-4">
 	<form method="POST" action="<?php echo site_url('Waiter/inputOrder'); ?>" enctype="multipart/form-data">
 		<div class="card-header py-3 text-center">
-			<div class="m-0 font-weight-bold text-primary text-center" id="currency"></div><input type="text" readonly class="m-0 font-weight-bold text-primary text-center" id="heading-cart"
-				value="Cart" name="total_price">
+			<div class="m-0 font-weight-bold text-primary text-center" id="currency"></div><input type="text" readonly
+				class="m-0 font-weight-bold text-primary text-center" id="heading-cart" value="Cart" name="total_price">
 		</div>
 		<div class="card-body">
 			<div class="card card-7">
@@ -33,8 +33,7 @@
 						</a>
 					</div>
 					<div class="text-center mt-2">
-						<button class="btn btn--radius-2 btn-success btn-block btn-md" onclick="showprice()"
-							type="submit">
+						<button class="btn btn--radius-2 btn-success btn-block btn-md" type="submit">
 							Checkout
 						</button>
 					</div>

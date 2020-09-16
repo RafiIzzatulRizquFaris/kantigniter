@@ -22,7 +22,10 @@ class Waiter extends CI_Controller{
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '2' && $this->session->userdata('state') == 'aktif')  {
             $table = 'order';
-            $where = array('id_waiter' => $this->session->userdata('id'));
+            $where = array(
+                'id_waiter' => $this->session->userdata('id'),
+                'status_order' => 'menunggu',
+            );
             $data['order'] = $this->DataModel->readWhereTable($table, $where);
             $this->load->view('waiter/orderdashboard', $data);
         } else {
@@ -114,11 +117,23 @@ class Waiter extends CI_Controller{
         header("Location:".base_url().'Waiter/dataproduct');
     }
 
+    public function updateOrder()
+    {
+        $data = array('status_order' => 'selesai',);
+        $where = array('id_order' => $this->input->post('order_id'),);
+        $this->DataModel->updateTable('order', $data, $where);
+        header("Location:".base_url().'Waiter/dataorder');
+    }
+
     public function inputOrder()
     {
         $tablecustomer = 'customer';
         $tableorder = 'order';
         $tabledetailorder = 'detail_order';
+
+        $idproduct = $_POST['product_id'];
+        $totalprice = $_POST['total_price'];
+        $qtyproduct = $_POST['product_qty'];
 
         $wherecustomer = array(
             'username' => $this->input->post('username_customer'), 
@@ -133,6 +148,7 @@ class Waiter extends CI_Controller{
             'id_customer' => $idcustomer,
             'keterangan' => 'tidak ada keterangan',
             'status_order' => 'menunggu',
+            'total_bayar' => $totalprice,
         );
 
         $this->db->set('tanggal','NOW()',FALSE);
@@ -146,22 +162,29 @@ class Waiter extends CI_Controller{
 
         $idorder = $this->DataModel->readColumnTable($tableorder, $whereorder)->id_order;
 
-        echo $idorder;
-
-        $idproduct = $_POST['product_id'];
-        $totalprice = $_POST['total_price'];
         $datadetailorder = array();
+        $index = 0;
         foreach ($idproduct as $productid) {
             array_push($datadetailorder, array(
                 'id_order' => $idorder,
                 'id_product' => $productid,
+                'qty_order' => $qtyproduct[$index],
             ));
+            $index++;
         }
 
         $this->DataModel->insertBatchTable($tabledetailorder, $datadetailorder);
 
-        $nowbalance = number_format($balancecustomer) - number_format($totalprice);
-        
+        $dataordercode = array(
+            'kode' => 'NTR'.$idorder,
+        );
+        $whereidorder = array(
+            'id_order' => $idorder,
+        );
+        $this->DataModel->updateTable($tableorder, $dataordercode, $whereidorder);
+
+        $nowbalance = $balancecustomer - $totalprice;
+
         $whereupdatebalance = array('id_customer' => $idcustomer,);
         $dataupdatebalance = array('saldo' => $nowbalance,);
         $this->DataModel->updateTable($tablecustomer, $dataupdatebalance, $wherecustomer);
