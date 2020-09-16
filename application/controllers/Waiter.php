@@ -125,6 +125,15 @@ class Waiter extends CI_Controller{
         header("Location:".base_url().'Waiter/dataorder');
     }
 
+    public function exportPdfOrder()
+    {
+        $data['order'] = $this->DataModel->readTable('order');
+        $this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan-order.pdf";
+		$this->pdf->load_view('preview/previeworder', $data);
+    }
+
     public function inputOrder()
     {
         $tablecustomer = 'customer';

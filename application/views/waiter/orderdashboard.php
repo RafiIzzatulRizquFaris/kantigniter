@@ -68,13 +68,12 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- <div class="container my-3 text-right">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertModal" onclick="oninsert()">Tambah Produk</button>
-					</div> -->
-
-					<!-- Page Heading -->
-					<!-- <h1 class="h3 mb-2 text-gray-800">Data Customer</h1> -->
-					<!-- <p class="mb-4">Mencakup segala data pengaduan yang telah dimasukkan oleh masyarakat</p> -->
+				<div class="container my-3 text-right">
+						<button type="button" class="btn btn-primary">
+						<a href="<?= site_url('Waiter/exportPdfOrder') ?>"
+								style="text-decoration: none; color: white;">EXPORT PDF</a>
+						</button>
+					</div>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
