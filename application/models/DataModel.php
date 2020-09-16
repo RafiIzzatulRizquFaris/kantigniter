@@ -36,4 +36,10 @@ class DataModel extends CI_Model{
     {
         return $this->db->get_where($table, $where)->row();
     }
+
+    public function readJoinTable($table, $join)
+    {
+        $data = $this->db->join($table, $join);
+        return $data->result();
+    }
 }
