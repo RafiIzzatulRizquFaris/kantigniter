@@ -34,7 +34,7 @@
 	<script src="<?php echo base_url('js/sb-admin-2.min.js');?>"></script>
 	<script src="<?php echo base_url('js/scripts.js');?>"></script>
 	<script>
-		function ondelete(id, cutomername) {
+		function ondelete(id, customername) {
 			$("#delete-data").html("")
 			let layout =
 				`<form action="<?php echo site_url('Admin/deleteCustomer');?>" method="POST" >Menghapus <input type="text" name="customer_name" readonly value="${customername}"> dengan id <input type="text" name="customer_id" readonly value="${id}"><button type="submit" class="btn btn--radius-2 btn-danger btn-block mt-3">Delete</button></form>`
