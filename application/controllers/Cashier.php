@@ -37,8 +37,8 @@ class Cashier extends CI_Controller{
     {
         if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == '3' && $this->session->userdata('state') == 'aktif')  {
             $table = 'transaksi';
-            $join = 'tansaksi.id_order = order.id_order';
-            $data['transaction'] = $this->DataModel->readTable($table);
+            $join = 'order.id_order = transaksi.id_order    ';
+            $data['transaction'] = $this->DataModel->readJoinTable($table, $join);
             $this->load->view('cashier/transactiondashboard', $data);
         } else {
             header("Location:".base_url().'Login/index');

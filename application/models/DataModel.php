@@ -39,7 +39,9 @@ class DataModel extends CI_Model{
 
     public function readJoinTable($table, $join)
     {
-        $data = $this->db->join($table, $join);
-        return $data->result();
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->join('order', $join);
+        return $this->db->get()->result();
     }
 }
